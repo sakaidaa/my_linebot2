@@ -41,6 +41,19 @@ def callback():
         abort(400)
     return 'OK'
 
+#テストケース追加
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+  text = event.message.text
+  if 'テスト' in text:
+    line_bot_api.reply_message(
+      event.reply_token,
+      [
+      TextSendMessage(text='OK'),
+      ]
+    )
+
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
   text = event.message.text
