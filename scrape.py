@@ -12,7 +12,7 @@ def get_weather_from_location(original_location):
   soup = BeautifulSoup(r.text, 'html.parser')
   content = soup.find(class_="serch-table")
   # 2回目のスクレイピングで用いるURLを得る
-  location_url = "http:" + content.find('a').get('href')
+  location_url = content.find('a').get('href')
   r = requests.get(location_url)
   soup = BeautifulSoup(r.text, 'html.parser')
   content = soup.find(id='yjw_pinpoint_today').find_all('td')
